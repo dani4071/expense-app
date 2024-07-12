@@ -3,9 +3,13 @@ import 'dart:math';
 import 'package:expense_tracker/screens/dummy_data/data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:expense_repository/expense_repository.dart';
+import 'package:intl/intl.dart';
 
 class mainScreen extends StatelessWidget {
-  const mainScreen({super.key});
+  final List<Expense> expenses;
+
+  mainScreen({super.key, required this.expenses});
 
   @override
   Widget build(BuildContext context) {
@@ -214,7 +218,7 @@ class mainScreen extends StatelessWidget {
             /// Scrollable list of items
             Expanded(
               child: ListView.builder(
-                itemCount: dummyData.length,
+                itemCount: expenses.length,
                 itemBuilder: (context, int i) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -249,15 +253,20 @@ class mainScreen extends StatelessWidget {
                                       height: 60,
                                       width: 60,
                                       decoration: BoxDecoration(
-                                          color: dummyData[i]["color"],
+                                          color: Color(expenses[i].category.color),
                                           shape: BoxShape.circle),
                                       //child: dummyData[i]["icon"],
                                     ),
-                                    dummyData[i]["icon"],
+                                    Image.asset(
+                                      "assets/${expenses[i].category.icon}.png",
+                                      scale: 20,
+                                      color: Colors.white,
+                                    )
+                                    // dummyData[i]["icon"],
                                   ],
                                 ),
                                 Text(
-                                  dummyData[i]["name"],
+                                  expenses[i].category.name,
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold),
                                 ),
@@ -269,12 +278,12 @@ class mainScreen extends StatelessWidget {
                               // crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  dummyData[i]["totalAmount"],
+                                  "\$${expenses[i].amount.toString()}",
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(
-                                  dummyData[i]["date"],
+                                  DateFormat('dd/MM/yy').format(expenses[i].date),
                                   style: const TextStyle(color: Colors.grey),
                                 )
                               ],

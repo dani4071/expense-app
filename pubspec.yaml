@@ -15,18 +15,36 @@ dependencies:
   
   cupertino_icons: ^1.0.6
 
+  firebase_core: any
+  flutter_bloc: any
+  bloc: any
+  font_awesome_flutter: any
+  intl: any
+  flutter_colorpicker: any
+  fl_chart: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
   font_awesome_flutter: ^10.7.0
   fl_chart: ^0.68.0
+  intl: ^0.19.0
+  flutter_colorpicker: ^1.1.0
+
+  bloc: ^8.1.4
+  equatable: ^2.0.5
+  flutter_bloc: ^8.1.6
+  uuid: ^4.3.3
+
+  expense_repository:
+    path: packages/expense_repository
 
   
   flutter_lints: ^3.0.0
 
-
-
 flutter:
 
   uses-material-design: true
+
+  assets:
+    - assets/
 
